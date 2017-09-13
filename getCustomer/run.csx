@@ -1,27 +1,26 @@
 #load "../shared/model/customer.csx"
 
+using System;
 using System.Net;
+using ServiceStack.Redis;
+using ServiceStack.Text;
 using System.Configuration;
-using System.Data.SqlClient;
-using Dapper;
 
-public static dynamic Run(HttpRequestMessage req, string id,
-TraceWriter log)
+public static dynamic Run(HttpRequestMessage req, string id, TraceWriter log)
 {
-    var connection = ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString;
-    log.Info("C# HTTP trigger function processed a request.");
+    var cnnString = ConfigurationManager.ConnectionStrings["MyRedis"].ConnectionString;
 
-    using (var db = new SqlConnection(connection))
+    var redisManager = new RedisManagerPool(cnnString);
+    var redis = redisManager.GetClient();
+
+    var redisCustomer = redis.As<Customer>();
+
+    if (string.IsNullOrEmpty(id))
     {
-        if (string.IsNullOrEmpty(id))
-        {
-            List<Customer> customers = db.Query<Customer>("SELECT * FROM [dbo].[Customers]").ToList();
-            return customers;
-        }
-        else
-        {
-            Customer customer = db.Query<Customer>("SELECT * FROM [dbo].[Customers] WHERE CustomerId = @Id", new { Id = id }).FirstOrDefault();
-            return customer;
-        }
+        return redisCustomer.GetAll();
+    }
+    else
+    {
+        return redisCustomer.GetById(id);
     }
 }

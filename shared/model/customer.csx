@@ -1,6 +1,10 @@
 
 public class Customer
 {
+    public string Id {
+        get {return CustomerId;}
+        set { CustomerId  = value;}
+    }
    public string CustomerId { get; set; }
    public string CompanyName { get; set; }
    public string Address { get; set; }

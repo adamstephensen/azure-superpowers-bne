@@ -1,0 +1,15 @@
+{
+  "frameworks": {
+      "net46": {
+          "dependencies": {
+              "Dapper": "1.50.2",
+              "System.Data.SqlClient": "4.1.0",
+              "Microsoft.WindowsAzure.ConfigurationManager": "3.2.1",
+              "ServiceStack.Common": "4.5.12",
+              "ServiceStack.Interfaces": "4.5.12",
+              "ServiceStack.Redis": "4.5.12",
+              "ServiceStack.Text": "4.5.12"
+          }
+      }
+  }
+}
