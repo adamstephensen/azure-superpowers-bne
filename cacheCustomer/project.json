@@ -1,0 +1,12 @@
+{
+    "frameworks": {
+      "net46": {
+        "dependencies": {
+          "ServiceStack.Common": "4.5.12",
+          "ServiceStack.Interfaces": "4.5.12",
+          "ServiceStack.Redis": "4.5.12",
+          "ServiceStack.Text": "4.5.12"
+        }
+      }
+    }
+  }

@@ -1,0 +1,14 @@
+{
+  "disabled": false,
+  "bindings": [
+    {
+      "name": "customer",
+      "type": "serviceBusTrigger",
+      "direction": "in",
+      "topicName": "updateCustomer",
+      "subscriptionName": "cacheCustomer",
+      "connection": "SB",
+      "accessRights": "listen"
+    }
+  ]
+}

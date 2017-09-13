@@ -1,0 +1,23 @@
+{
+  "disabled": false,
+  "bindings": [
+    {
+      "authLevel": "function",
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in",
+      "route": "customer",
+      "methods": [
+        "post"
+      ]
+    },
+    {
+      "type": "serviceBus",
+      "name": "topicQueue",
+      "topicName": "updateCustomer",
+      "connection": "SB",
+      "accessRights": "Send",
+      "direction": "out"
+    }
+  ]
+}
